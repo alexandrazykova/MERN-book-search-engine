@@ -7,6 +7,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import SearchBooks from './pages/SearchBooks';
@@ -38,9 +39,11 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Navbar />
-      <Outlet />
+<ApolloProvider client={client}>
+      <Navbar/>
+      <Outlet/>
+      {/* <Link to={`/${SearchBooks}`}>Search Books</Link>
+      <Link to={`/${SavedBooks}`}>Saved books</Link> */}
     </ApolloProvider>
   );
 }
