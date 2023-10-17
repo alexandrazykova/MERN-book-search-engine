@@ -7,7 +7,7 @@ const resolvers = {
             if (context.user) {
                 return User.findOne({ _id: context.user._id });
             }
-            throw new AuthenticationError("Please log in");
+            throw AuthenticationError;
         },
     },
 
@@ -15,12 +15,12 @@ const resolvers = {
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
             if (!user) {
-                throw new AuthenticationError("Cannon find the user");
+                throw AuthenticationError;
             }
 
             const correctPw = await user.isCorrectPassword(password);
             if (!correctPw) {
-                throw new AuthenticationError("Wrong password");
+                throw AuthenticationError;
             }
 
             const token = signToken(user);
@@ -30,7 +30,7 @@ const resolvers = {
             const user = await User.create(args);
 
             if (!user) {
-                throw new AuthenticationError("Try again");
+                throw AuthenticationError;
             }
             const token = signToken(user);
             return { token, user };
@@ -45,7 +45,7 @@ const resolvers = {
 
                 return updatedUser;
             }
-            throw new AuthenticationError("Please log in");
+            throw AuthenticationError;
         },
         removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
@@ -57,7 +57,7 @@ const resolvers = {
 
                 return updatedUser;
             }
-            throw new AuthenticationError("Please log in");
+            throw AuthenticationError;
         }
     },
 }
