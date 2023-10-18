@@ -17,6 +17,7 @@ const SavedBooks = () => {
   const [setUserData] = useState({});
   const { loading, data } = useQuery(GET_ME);
   const [removeBook] = useMutation(REMOVE_BOOK);
+  console.log(data)
 
  const handleDeleteBook = async (bookId) => {
   try {
@@ -53,6 +54,7 @@ const SavedBooks = () => {
         <Row>
           {data.me.savedBooks.map((book) => {
             return (
+             
               <Col md="4">
                 <Card key={book.bookId} border='dark'>
                   {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
@@ -66,6 +68,7 @@ const SavedBooks = () => {
                   </Card.Body>
                 </Card>
               </Col>
+              
             );
           })}
         </Row>
