@@ -7,7 +7,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import SearchBooks from './pages/SearchBooks';
@@ -34,7 +34,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 function App() {
@@ -42,8 +42,6 @@ function App() {
 <ApolloProvider client={client}>
       <Navbar/>
       <Outlet/>
-      {/* <Link to={`/${SearchBooks}`}>Search Books</Link>
-      <Link to={`/${SavedBooks}`}>Saved books</Link> */}
     </ApolloProvider>
   );
 }
